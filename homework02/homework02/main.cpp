@@ -1,8 +1,10 @@
+#include <QCoreApplication>
 #include <QDebug>
 #include <QVector>
 #include <QTextStream>
 #include <QFile>
 
+//定义命名空间SK，将文本文件划分为不同的列
 namespace SK {
 enum SortKind{
     col01    =   0x00000001<<0,         //!< 第1列
@@ -40,15 +42,64 @@ enum SortKind{
 };
 }
 
-
-typedef struct{
-    QString ID;
-    QString name;
-    QVector<int> pro;
+//信息存储结构体
+typedef struct
+{
+    QStringList form;
 } studData;
 
-QDebug operator<< (QDebug d, const studData &data) {
-      d<<data.ID<<data.name<<data.pro;
-    // 请补全运算符重载函数，使其可以直接输出studData结构
+
+
+
+QDebug operator << (QDebug d, const studData &data)
+{
+    for(int i=0;i<data.form.size();i++)
+    d<<data.form.at(i)<<"\t" ;
     return d;
 }
+
+
+
+class myCmp
+{
+public:
+    myCmp(int selectedColumn) { this->currentColumn = selectedColumn; }
+    bool operator() (const studData& d1,const studData& d2);
+private:
+    int currentColumn;
+};
+
+
+bool myCmp::operator()(const studData &d1, const studData &d2)
+{
+    if(d1.form.at (currentColumn+1)>d2.form.at(currentColumn+1))
+        return true ;
+    else
+        return false;
+}
+
+
+
+class ScoreSorter
+{
+public:
+    ScoreSorter(QString dataFile);
+    void read();
+    void doSort();
+    friend QDebug operator << (QDebug d, const studData &data);
+private:
+    QString path;
+    QList<studData > data;
+    studData Listtitle;
+    void write(quint8 lie);
+};
+
+
+ScoreSorter::ScoreSorter(QString dataFile)
+{
+    this->path=dataFile;
+}
+
+
+
+

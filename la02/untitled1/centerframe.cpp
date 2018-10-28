@@ -9,6 +9,7 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QDebug>
+#include <QToolButton>
 
 
 CenterFrame::CenterFrame(QWidget *parent) : QFrame(parent)
@@ -44,17 +45,20 @@ void CenterFrame::createUserCommandArea()
     painter.setPen(pen);
 
     //图片按钮
-    imageBtn->setToolTip("绘制图形");
-    imageBtn->setCheckable(true);
-    imageBtn->setIconSize(p.size());
+    btndraw=new QPushButton();
+    btndraw->setToolTip("绘制图形");
+    btndraw->setCheckable(true);
+    btndraw->setIconSize(p.size());
     p.fill(BACKGROUND_COLOR);
     QImage image(":/zjx");
     QRect targetRect(0,0,20,20);
     QRect sourceRect=image.rect();
     painter.drawImage(targetRect,image,sourceRect);
-    imageBtn=new QToolButton();
 
-    imageBtn->setIcon(QIcon(p));
+
+    btndraw->setIcon(QIcon(p));
+    connect(btndraw,&QPushButton::clicked,
+            this,&CenterFrame::on_btndrawClicked);
 
 
 
@@ -161,7 +165,7 @@ void CenterFrame::createUserCommandArea()
     gridLayout->addWidget(btnLine,1,1);
     gridLayout->addWidget(btnText,2,0);
     gridLayout->addWidget(btnDiamond,2,1);
-    gridLayout->addWidget(btnImage,3,1);
+    gridLayout->addWidget(btndraw,3,1);
     gridLayout->setMargin(3);
     gridLayout->setSpacing(3);
     group->setLayout(gridLayout);
@@ -236,7 +240,6 @@ void CenterFrame::updateButtonStatus()
     btnEllipse->setChecked(false);
     btnText->setChecked(false);
     btnDiamond->setChecked(false);
-    imageBtn->setChecked(false);
     edtText->setVisible(false);
     // 然后根据设置的绘图类型重新切换按键状态
     switch (drawWidget->shapeType()) {
@@ -255,8 +258,8 @@ void CenterFrame::updateButtonStatus()
     case ST::Diamond:
         btnDiamond->setChecked(true);
         break;
-    case ST::Image:
-        imageBtn->setChecked(true);
+     case ST::Draw:
+        btndraw->setChecked(true);
         break;
 
     case ST::Text:
@@ -343,14 +346,19 @@ void CenterFrame::on_btnDiamondClicked()
     }
 }
 
-void CenterFrame::saveGeometry()
+void CenterFrame::on_btnsaveClicked()
 {
-    if(btnDiamond->isChecked()){
-        drawWidget->setShapeType(ST::Diamond);
-        updateButtonStatus();
-    }else{
-        drawWidget->setShapeType(ST::None);
-    }
+
+        drawWidget->save();
+
+}
+
+void CenterFrame::on_btndrawClicked()
+{
+
+        drawWidget->Draw();
+
+
 }
 
 

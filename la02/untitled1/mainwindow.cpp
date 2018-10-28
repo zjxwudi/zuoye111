@@ -69,10 +69,17 @@ void MainWindow::createToolBar ()
 
 
        // 创建清除工具栏
-      clearBtn = new QToolButton;
-      clearBtn->setText (tr("清除"));
-      clearBtn->setToolTip(tr("清除当前画板"));
-      connect (clearBtn, &QToolButton::clicked, centerFrame, &CenterFrame::clearPaint);
+     clearBtn = new QToolButton;
+     clearBtn->setText (tr("清除"));
+     clearBtn->setToolTip(tr("清除当前画板"));
+     connect (clearBtn, &QToolButton::clicked, centerFrame, &CenterFrame::clearPaint);
+
+      //保存图片
+     saveBtn = new QToolButton;
+     saveBtn->setText (tr("保存图片"));
+     saveBtn->setToolTip(tr("保存当前图片"));
+     connect (saveBtn, &QToolButton::clicked, centerFrame, &CenterFrame::on_btnsaveClicked);
+
 
 
 
@@ -84,7 +91,7 @@ void MainWindow::createToolBar ()
       toolBar->addWidget (colorBtn);
       toolBar->addSeparator();
       toolBar->addWidget (clearBtn);
-      toolBar->addWidget (imageBtn);
+      toolBar->addWidget (saveBtn);
   }
 
   void MainWindow::penStyleChangged (int index)

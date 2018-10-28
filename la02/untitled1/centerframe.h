@@ -9,7 +9,6 @@ class QHBoxLayout;
 class DrawWidget;
 class QGroupBox;
 class QPushButton;
-class QToolButton;
 class QLineEdit;
 
 class CenterFrame : public QFrame
@@ -33,7 +32,8 @@ public slots:
     void setPenStyle(int penStyle);
     void setPenWidth(int width=1);
     void setPenColor(QColor color);
-    void saveImage();
+    void on_btndrawClicked();
+    void on_btnsaveClicked();
     void clearPaint();
 
 
@@ -44,7 +44,6 @@ protected slots:
     void on_btnTriangleClicked();
     void on_btnTextClicked();
     void on_btnDiamondClicked();
-    void on_imageBtnClicked();
     void on_edtTextEdited(const QString &text);
 
 
@@ -59,7 +58,7 @@ private:
     QPushButton* btnTriangle;
     QPushButton* btnText;
     QPushButton* btnDiamond;
-    QToolButton* imageBtn;
+    QPushButton* btndraw;
     QLineEdit* edtText;
 
 

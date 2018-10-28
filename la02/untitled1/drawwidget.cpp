@@ -105,6 +105,13 @@ void DrawWidget::resizeEvent (QResizeEvent *event)
    }
     QWidget::resizeEvent(event);
 }
+void DrawWidget::save ()
+{
+
+    pix->save("保存图片.png");
+
+}
+
 
 
 void DrawWidget::clear ()
@@ -121,6 +128,16 @@ void DrawWidget::setShapeType(ST::ShapeType type)
 ST::ShapeType DrawWidget::shapeType()
 {
     return drawType;
+}
+
+void DrawWidget::Draw()
+{
+    QImage image(":/zjx");
+    QRect targetRect(100,0,400,400);
+    QRect sourceRect=image.rect();
+    QPainter painter(pix);
+    painter.drawImage(targetRect,image,sourceRect);
+    update ();
 }
 
 void DrawWidget::setDrawnText(QString text)

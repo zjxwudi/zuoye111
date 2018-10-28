@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="zjx">RES/zzz/timg (1).jpg</file>
+    </qresource>
+</RCC>

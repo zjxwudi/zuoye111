@@ -84,6 +84,7 @@ void MainWindow::createToolBar ()
       toolBar->addWidget (colorBtn);
       toolBar->addSeparator();
       toolBar->addWidget (clearBtn);
+      toolBar->addWidget (imageBtn);
   }
 
   void MainWindow::penStyleChangged (int index)

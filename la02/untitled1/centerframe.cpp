@@ -43,15 +43,18 @@ void CenterFrame::createUserCommandArea()
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(pen);
 
-
+    //图片按钮
+    imageBtn->setToolTip("绘制图形");
+    imageBtn->setCheckable(true);
+    imageBtn->setIconSize(p.size());
     p.fill(BACKGROUND_COLOR);
     QImage image(":/zjx");
     QRect targetRect(0,0,20,20);
     QRect sourceRect=image.rect();
     painter.drawImage(targetRect,image,sourceRect);
-    btnImage=new QPushButton();
+    imageBtn=new QToolButton();
 
-    btnImage->setIcon(QIcon(p));
+    imageBtn->setIcon(QIcon(p));
 
 
 
@@ -233,6 +236,7 @@ void CenterFrame::updateButtonStatus()
     btnEllipse->setChecked(false);
     btnText->setChecked(false);
     btnDiamond->setChecked(false);
+    imageBtn->setChecked(false);
     edtText->setVisible(false);
     // 然后根据设置的绘图类型重新切换按键状态
     switch (drawWidget->shapeType()) {
@@ -250,6 +254,9 @@ void CenterFrame::updateButtonStatus()
         break;
     case ST::Diamond:
         btnDiamond->setChecked(true);
+        break;
+    case ST::Image:
+        imageBtn->setChecked(true);
         break;
 
     case ST::Text:
@@ -327,6 +334,16 @@ void CenterFrame::on_btnTriangleClicked()
 }
 
 void CenterFrame::on_btnDiamondClicked()
+{
+    if(btnDiamond->isChecked()){
+        drawWidget->setShapeType(ST::Diamond);
+        updateButtonStatus();
+    }else{
+        drawWidget->setShapeType(ST::None);
+    }
+}
+
+void CenterFrame::saveGeometry()
 {
     if(btnDiamond->isChecked()){
         drawWidget->setShapeType(ST::Diamond);

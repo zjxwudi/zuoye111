@@ -114,7 +114,7 @@ QString dataWorker::requestUrl()
     QString r;
    switch(switch_Num){
    case 0:
-       r= QString("http://lishi.tianqi.com/%1/%2.html").arg(_requestCitypinyin).arg(_requestDate);
+       r= QString("https://lishi.tianqi.com/%1/%2.html").arg(_requestCitypinyin).arg(_requestDate);
        qDebug()<<r;
        return r;
        break;

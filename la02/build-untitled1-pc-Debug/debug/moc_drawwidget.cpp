@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DrawWidget_t {
     QByteArrayData data[8];
-    char stringdata0[55];
+    char stringdata0[61];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,12 +37,12 @@ QT_MOC_LITERAL(2, 20, 0), // ""
 QT_MOC_LITERAL(3, 21, 8), // "setWidth"
 QT_MOC_LITERAL(4, 30, 8), // "setColor"
 QT_MOC_LITERAL(5, 39, 5), // "clear"
-QT_MOC_LITERAL(6, 45, 4), // "Draw"
-QT_MOC_LITERAL(7, 50, 4) // "save"
+QT_MOC_LITERAL(6, 45, 10), // "connectimg"
+QT_MOC_LITERAL(7, 56, 4) // "save"
 
     },
     "DrawWidget\0setStyle\0\0setWidth\0setColor\0"
-    "clear\0Draw\0save"
+    "clear\0connectimg\0save"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,7 +88,7 @@ void DrawWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->setWidth((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->setColor((*reinterpret_cast< QColor(*)>(_a[1]))); break;
         case 3: _t->clear(); break;
-        case 4: _t->Draw(); break;
+        case 4: _t->connectimg(); break;
         case 5: _t->save(); break;
         default: ;
         }

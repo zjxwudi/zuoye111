@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CenterFrame_t {
     QByteArrayData data[19];
-    char stringdata0[257];
+    char stringdata0[254];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,27 +39,26 @@ QT_MOC_LITERAL(4, 34, 11), // "setPenWidth"
 QT_MOC_LITERAL(5, 46, 5), // "width"
 QT_MOC_LITERAL(6, 52, 11), // "setPenColor"
 QT_MOC_LITERAL(7, 64, 5), // "color"
-QT_MOC_LITERAL(8, 70, 17), // "on_btndrawClicked"
-QT_MOC_LITERAL(9, 88, 17), // "on_btnsaveClicked"
-QT_MOC_LITERAL(10, 106, 10), // "clearPaint"
-QT_MOC_LITERAL(11, 117, 17), // "on_btnRectClicked"
-QT_MOC_LITERAL(12, 135, 20), // "on_btnEllipseClicked"
-QT_MOC_LITERAL(13, 156, 17), // "on_btnLineClicked"
-QT_MOC_LITERAL(14, 174, 21), // "on_btnTriangleClicked"
-QT_MOC_LITERAL(15, 196, 17), // "on_btnTextClicked"
-QT_MOC_LITERAL(16, 214, 20), // "on_btnDiamondClicked"
-QT_MOC_LITERAL(17, 235, 16), // "on_edtTextEdited"
-QT_MOC_LITERAL(18, 252, 4) // "text"
+QT_MOC_LITERAL(8, 70, 10), // "clearPaint"
+QT_MOC_LITERAL(9, 81, 15), // "SaveCurrentDesk"
+QT_MOC_LITERAL(10, 97, 17), // "on_btnRectClicked"
+QT_MOC_LITERAL(11, 115, 20), // "on_btnEllipseClicked"
+QT_MOC_LITERAL(12, 136, 17), // "on_btnLineClicked"
+QT_MOC_LITERAL(13, 154, 21), // "on_btnTriangleClicked"
+QT_MOC_LITERAL(14, 176, 20), // "on_btnDiamondClicked"
+QT_MOC_LITERAL(15, 197, 17), // "on_btnTextClicked"
+QT_MOC_LITERAL(16, 215, 16), // "on_edtTextEdited"
+QT_MOC_LITERAL(17, 232, 4), // "text"
+QT_MOC_LITERAL(18, 237, 16) // "on_btnimgClicked"
 
     },
     "CenterFrame\0setPenStyle\0\0penStyle\0"
     "setPenWidth\0width\0setPenColor\0color\0"
-    "on_btndrawClicked\0on_btnsaveClicked\0"
-    "clearPaint\0on_btnRectClicked\0"
+    "clearPaint\0SaveCurrentDesk\0on_btnRectClicked\0"
     "on_btnEllipseClicked\0on_btnLineClicked\0"
-    "on_btnTriangleClicked\0on_btnTextClicked\0"
-    "on_btnDiamondClicked\0on_edtTextEdited\0"
-    "text"
+    "on_btnTriangleClicked\0on_btnDiamondClicked\0"
+    "on_btnTextClicked\0on_edtTextEdited\0"
+    "text\0on_btnimgClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,14 +82,14 @@ static const uint qt_meta_data_CenterFrame[] = {
        6,    1,   91,    2, 0x0a /* Public */,
        8,    0,   94,    2, 0x0a /* Public */,
        9,    0,   95,    2, 0x0a /* Public */,
-      10,    0,   96,    2, 0x0a /* Public */,
+      10,    0,   96,    2, 0x09 /* Protected */,
       11,    0,   97,    2, 0x09 /* Protected */,
       12,    0,   98,    2, 0x09 /* Protected */,
       13,    0,   99,    2, 0x09 /* Protected */,
       14,    0,  100,    2, 0x09 /* Protected */,
       15,    0,  101,    2, 0x09 /* Protected */,
-      16,    0,  102,    2, 0x09 /* Protected */,
-      17,    1,  103,    2, 0x09 /* Protected */,
+      16,    1,  102,    2, 0x09 /* Protected */,
+      18,    0,  105,    2, 0x09 /* Protected */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -105,8 +104,8 @@ static const uint qt_meta_data_CenterFrame[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   17,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
 
        0        // eod
 };
@@ -121,16 +120,16 @@ void CenterFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->setPenWidth((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->setPenWidth(); break;
         case 3: _t->setPenColor((*reinterpret_cast< QColor(*)>(_a[1]))); break;
-        case 4: _t->on_btndrawClicked(); break;
-        case 5: _t->on_btnsaveClicked(); break;
-        case 6: _t->clearPaint(); break;
-        case 7: _t->on_btnRectClicked(); break;
-        case 8: _t->on_btnEllipseClicked(); break;
-        case 9: _t->on_btnLineClicked(); break;
-        case 10: _t->on_btnTriangleClicked(); break;
+        case 4: _t->clearPaint(); break;
+        case 5: _t->SaveCurrentDesk(); break;
+        case 6: _t->on_btnRectClicked(); break;
+        case 7: _t->on_btnEllipseClicked(); break;
+        case 8: _t->on_btnLineClicked(); break;
+        case 9: _t->on_btnTriangleClicked(); break;
+        case 10: _t->on_btnDiamondClicked(); break;
         case 11: _t->on_btnTextClicked(); break;
-        case 12: _t->on_btnDiamondClicked(); break;
-        case 13: _t->on_edtTextEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 12: _t->on_edtTextEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 13: _t->on_btnimgClicked(); break;
         default: ;
         }
     }

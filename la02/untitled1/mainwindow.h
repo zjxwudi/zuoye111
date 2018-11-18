@@ -20,8 +20,8 @@ public:
     void createToolBar();
 public slots:
     void penStyleChangged(int index=0);
-
     void penColorChangged();
+
 
 private:
     CenterFrame *centerFrame;
@@ -32,5 +32,6 @@ private:
     QToolButton *colorBtn;
     QToolButton *clearBtn;
     QToolButton *saveBtn;
+
 };
-#endif // MAINWINDOW_H
+ #endif // MAINWINDOW_H

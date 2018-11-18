@@ -12,6 +12,7 @@ class DrawWidget : public QWidget
 {
     Q_OBJECT
 public:
+
     explicit DrawWidget(QWidget *parent = 0);
     ~DrawWidget();
 
@@ -21,6 +22,7 @@ public:
 
 
 protected:
+
     void mousePressEvent (QMouseEvent *e);
     void mouseMoveEvent (QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
@@ -36,11 +38,12 @@ public slots:
     void setWidth(int);
     void setColor(QColor);
     void clear();
-    void Draw();
+    void connectimg();
     void save();
 
 private :
     QPixmap *pix;
+    QPixmap *pixm;
     QPoint startpos;
     QPoint endpos;
     bool canDraw;
@@ -51,4 +54,3 @@ private :
     QString drawnText;
 };
 #endif // DRAWWIDGET_H
-

@@ -73,8 +73,8 @@ signals:
      * 提醒界面开始更新图表数据。
      */
     void dataParseFinished(QList<QDateTime> date,QList<qreal> high, QList<qreal> low);
-    void httpRequestError(QString error);
-    void dataParseError(QString error);
+   // void httpRequestError(QString error);
+    //void dataParseError(QString error);
 public slots:
 };
 

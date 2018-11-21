@@ -42,9 +42,16 @@ mainWidget::~mainWidget()
  */
 void mainWidget::initComboMonth()
 {
+    QDateTime ti=QDateTime::currentDateTime();
     QStringList month;
-    for(int i=10;i>0;i--){
-        month<<QString("2017-%1").arg(i,2,10,QChar('0'));
+    QString str=ti.toString("yyyy-MM");
+    for(int i=1;i<11;i++){
+        // 此处为固定时间和日期
+         //请使用QDate/QDateTime将其修正，
+        // 用户运行前一个月开始连续10个月的"年-月"
+        // (如2018-02、2018-01、2017-12...，假设当 前日期为2018年3月12日)
+        str=ti.addMonths(-i).toString("yyyy-MM");
+        month<<str.arg(i,2,10,QChar('0'));
     }
     ui->comboMonth->clear();
     ui->comboMonth->addItems(month);
@@ -147,7 +154,7 @@ void mainWidget::addLineSeries(QChart *chart, const QString &seriesName, const Q
         QDateTimeAxis *mAxisX = new QDateTimeAxis;
         mAxisX->setFormat("MM-dd");
         mAxisX->setTitleText("日期");
-        mAxisX->setTickCount(10+1);
+        mAxisX->setTickCount(8+1);
         mAxisX->setRange(QDateTime::currentDateTime().addMonths(-1),QDateTime::currentDateTime());
 
         QValueAxis *mAxisY = new QValueAxis;

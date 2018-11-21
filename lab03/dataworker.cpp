@@ -82,8 +82,9 @@ QString dataWorker::requestCity()
 
 void dataWorker::doRequest()
 {
+    if(switch_Num==0){
     // 导入数据，首先检查是否已经存在数据文件
-    QString fName = QString("%1/%2%3.txt").arg(dataPath,_requestDate,_requestCitypinyin);
+    QString fName = QString("%1/weather_%2%3.txt").arg(dataPath,_requestCitypinyin,_requestDate);
     //QString fName = QString("%1/%2.txt").arg(dataPath,_requestDate);
     QStringList dataList;
     QFile f(fName);
@@ -98,6 +99,26 @@ void dataWorker::doRequest()
         // 如果无数据文件，则从网络获取
         qDebug().noquote()<<QString("数据由网络获取...");
         httpGet(requestUrl());
+    }
+    }
+    if(switch_Num==1){
+        QString fName = QString("%1/aqi_%2%3.txt").arg(dataPath,_requestCitypinyin,_requestDate);
+        //QString fName = QString("%1/%2.txt").arg(dataPath,_requestDate);
+        QStringList dataList;
+        QFile f(fName);
+        if(f.open(QIODevice::ReadOnly|QIODevice::Text)){  // 成功打开数据文件，则由文件中读取
+            qDebug().noquote()<<QString("数据由文件%1导入...").arg(fName);
+            QTextStream stream (&f);        //建立文本流stream，存放f的地址指针
+            while(!stream.atEnd())          //当stream没有运行到结束指令时，stream运行读取命令，将数据流入dataList中
+                 dataList<<stream.readLine();
+            // 数据导入完成，开始解析
+            parseData(dataList.join(splitter).simplified());
+        }else{
+            // 如果无数据文件，则从网络获取
+            qDebug().noquote()<<QString("数据由网络获取...");
+            httpGet(requestUrl());
+        }
+
     }
 }
 
@@ -238,12 +259,13 @@ void dataWorker::parseData(const QString sourceText)
  */
 void dataWorker::exportDataToFile(const QString dataText)
 {
+    if(switch_Num==0){
     QStringList data = dataText.split(splitter);
     QDir dir;
     if( ! dir.exists(dataPath) )
         qDebug()<<dir.mkdir(dataPath);
 
-    QString fName = QString("%1/%2%3.txt").arg(dataPath,_requestCitypinyin,_requestDate);
+    QString fName = QString("%1/weather_%2%3.txt").arg(dataPath,_requestCitypinyin,_requestDate);
 
     QFile f(fName);
     if(f.open(QIODevice::WriteOnly|QIODevice::Text)){
@@ -252,6 +274,24 @@ void dataWorker::exportDataToFile(const QString dataText)
             stream << d <<"\n";
     }else{
         qDebug()<<"打开文件错误";
+    }
+    }
+    if(switch_Num==1){
+        QStringList data = dataText.split(splitter);
+        QDir dir;
+        if( ! dir.exists(dataPath) )
+            qDebug()<<dir.mkdir(dataPath);
+
+        QString fName = QString("%1/aqi_%2%3.txt").arg(dataPath,_requestCitypinyin,_requestDate);
+
+        QFile f(fName);
+        if(f.open(QIODevice::WriteOnly|QIODevice::Text)){
+            QTextStream stream (&f);
+            for( QString d : data)
+                stream << d <<"\n";
+        }else{
+            qDebug()<<"打开文件错误";
+        }
     }
 
 }
